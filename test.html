@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>screenshot</title>
+</head>
+<body>
+  <div id="target" contenteditable="true"></div>
+  <input type="button" id="ss_btn" value="ss">
+  
+  <a href="" id="ss_donwload" download="">
+    <img src="" id="result" alt="">
+  </a>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script> -->
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+  <script>    
+
+    document.getElementById('ss_btn').addEventListener('click',function ss(){
+      console.log('ss');
+
+      html2canvas(document.querySelector("#target")).then(canvas => { 
+          // let downloadEle = document.createElement("a");
+          // downloadEle.href = canvas.toDataURL("image/png");
+          // downloadEle.download = "canvas.png";
+          // downloadEle.click();
+          var imgData = canvas.toDataURL();
+          console.log(imgData);
+          document.getElementById("result").src = imgData;
+          document.getElementById("ss_donwload").href = imgData;
+      });
+
+      // //HTML内に画像を表示
+      // html2canvas(document.getElementById("target"),{
+ 
+      //   onrendered: function(canvas){
+      //     //imgタグのsrcの中に、html2canvasがレンダリングした画像を指定する。
+
+      //   }
+      // });
+
+      // //ボタンを押下した際にダウンロードする画像を作る
+      // html2canvas(document.body,{
+      //   onrendered: function(canvas){
+      //     //aタグのhrefにキャプチャ画像のURLを設定
+      //     var imgData = canvas.toDataURL();
+      //     document.getElementById("ss_donwload").href = imgData;
+      //   }
+      // });
+
+    })
+  </script>
+</body>
+</html>
